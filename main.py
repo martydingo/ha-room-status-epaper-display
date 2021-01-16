@@ -7,7 +7,7 @@ dispWidth = 800
 dispHeight = 480
 
 font = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),72)
-Text = "Living Room"
+roomName = "Living Room"
 
 
 try:
@@ -20,10 +20,18 @@ except:
 image = Image.new(mode='1', size=(dispWidth, dispHeight), color=255)
 draw = ImageDraw.Draw(image)
 
+## Name of Room w/ Lines
 draw.line(((0,dispHeight/40),(dispWidth,dispHeight/40)))
 draw.line(((0,((dispHeight/40)+72)),(dispWidth,((dispHeight/40)+72))))
-draw.text((dispWidth/3, dispHeight/40), Text,
+draw.text((dispWidth/3, dispHeight/40), roomName,
           font=font, fill=0, anchor='ms')
+
+## List of Lights
+draw.text((0, dispHeight/30), "Lights",
+          font=font, fill=0, anchor='ls')
+draw.line(((0,((dispHeight/30)+72)),(dispWidth,((dispHeight/30)+72))))
+
+## Push to Display
 try:
     disp.display(disp.getbuffer(image))
 except:
