@@ -1,2 +1,2 @@
-secrets.py
 *.pyc
+libs/ha_api_lib/ha_secrets.py
