@@ -1,12 +1,12 @@
 import libs.ha_api_lib as ha
 import libs.epd7in5_V2.epd7in5_V2 as epd7in5_V2
-import PIL
+from PIL import Image, ImageDraw, ImageFont
 import os 
 
 dispWidth = 800
 dispHeight = 480
 
-font = PIL.ImageFont.truetype((os.getcwd()+"fonts/BebasNeue-Regular.ttf"),size=40)
+font = ImageFont.truetype((os.getcwd()+"fonts/BebasNeue-Regular.ttf"),size=40)
 Text = "Living Room"
 
 try:
@@ -17,8 +17,8 @@ except:
     print("Error initialising display")
 
 
-image = PIL.Image.new(mode='1', size=(dispWidth, dispHeight), color=255)
-draw = PIL.ImageDraw.Draw(image)
+image = Image.new(mode='1', size=(dispWidth, dispHeight), color=255)
+draw = ImageDraw.Draw(image)
 
 draw.text((0, 0), Text,
           font=font, fill=0, align='left')
