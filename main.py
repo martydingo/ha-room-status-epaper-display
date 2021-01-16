@@ -70,12 +70,12 @@ draw.line(((10,((dispHeight/1.75)+48)),(dispWidth/6,((dispHeight/1.75)+48))))
 Media = crawlRoomMedia(roomName)
 for media in Media:
     mediaDict = ha.entities.entity_id(media)
-    draw.text((10, ((dispHeight/1.75+72)+(Media.index(media)*26))), mediaDict['attributes']['friendly_name'] + " is currently " + mediaDict['state'],
+    draw.text((10, ((dispHeight/1.75+72)+(Media.index(media)*52))), mediaDict['attributes']['friendly_name'] + " is currently " + mediaDict['state'],
               font=MediaFont, fill=0, anchor='ls')
     try:
         if(mediaDict['attributes']['media_title']):
             currentlyPlaying=('--- ' + mediaDict['attributes']['media_title'] + ' - ' + mediaDict['attributes']['media_artist']+' ---')
-            draw.text((10, ((dispHeight/1.75+72)+(Media.index(media)*52))), currentlyPlaying,
+            draw.text((10, ((dispHeight/1.75+72)+((Media.index(media)*52)+26))), currentlyPlaying,
                       font=MediaFont, fill=0, anchor='ls')
     except KeyError:
         continue
