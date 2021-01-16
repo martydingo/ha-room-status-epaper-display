@@ -6,7 +6,8 @@ import os
 dispWidth = 800
 dispHeight = 480
 
-font = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),72)
+roomFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),72)
+lightsFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),36)
 roomName = "Living Room"
 
 
@@ -24,12 +25,12 @@ draw = ImageDraw.Draw(image)
 draw.line(((0,dispHeight/40),(dispWidth,dispHeight/40)))
 draw.line(((0,((dispHeight/40)+72)),(dispWidth,((dispHeight/40)+72))))
 draw.text((dispWidth/3, dispHeight/40), roomName,
-          font=font, fill=0, anchor='ms')
+          font=roomFont, fill=0, anchor='ms')
 
 ## List of Lights
-draw.text((0, dispHeight/30), "Lights",
-          font=font, fill=0, anchor='ls')
-draw.line(((0,((dispHeight/30)+72)),(dispWidth/5,((dispHeight/30)+72))))
+draw.text((0, dispHeight/3), "Lights",
+          font=lightsFont, fill=0, anchor='ls')
+draw.line(((0,((dispHeight/3)+36)),(dispWidth/5,((dispHeight/3)+36))))
 
 ## Push to Display
 try:
