@@ -24,7 +24,7 @@ def crawlRoomMedia(roomName):
                         if('idle' not in entities['state']):
                             if('Lounge Room' not in entities['attributes']['friendly_name']):
                                 roomMedia.append(entities['entity_id'])
-    return roomLights
+    return roomMedia
 
 dispWidth = 800
 dispHeight = 480
@@ -69,12 +69,12 @@ draw.line(((10,((dispHeight/1.25)+48)),(dispWidth/6,((dispHeight/1.25)+48))))
 Media = crawlRoomMedia(roomName)
 for media in Media:
     mediaDict = ha.entities.entity_id(media)
-    draw.text((10, ((dispHeight/4+72)+(Media.index(light)*26))), mediaDict['attributes']['friendly_name'] + " is currently " + mediaDict['state'],
+    draw.text((10, ((dispHeight/4+72)+(Media.index(media)*26))), mediaDict['attributes']['friendly_name'] + " is currently " + mediaDict['state'],
               font=MediaFont, fill=0, anchor='ls')
     try:
         if(mediaDict['attributes']['media_title']):
             currentlyPlaying=('--- ' + mediaDict['attributes']['media_title'] + ' - ' + mediaDict['attributes']['media_artist']+' ---')
-            draw.text((10, ((dispHeight/1.25+72)+(Media.index(light)*52))), currentlyPlaying,
+            draw.text((10, ((dispHeight/1.25+72)+(Media.index(media)*52))), currentlyPlaying,
                       font=MediaFont, fill=0, anchor='ls')
     except KeyError:
         continue
