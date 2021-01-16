@@ -9,7 +9,7 @@ dispHeight = 480
 font = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),72)
 Text = "Living Room"
 
-def dispStatus(room):
+def dispStatus(room=None):
     try:
         disp = epd7in5_V2.EPD()
         dispInitRC = disp.init()
@@ -28,3 +28,5 @@ def dispStatus(room):
     except:
         print("Error pushing to display")
     #print(ha.entities.entity_id("light.living_room_desk_lamp"))
+
+dispStatus()
