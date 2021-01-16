@@ -9,22 +9,22 @@ dispHeight = 480
 font = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),72)
 Text = "Living Room"
 
-try:
-    disp = epd7in5_V2.EPD()
-    dispInitRC = disp.init()
-    disp.Clear()
-except:
-    print("Error initialising display")
-
-
-
-image = Image.new(mode='1', size=(dispWidth, dispHeight), color=255)
-draw = ImageDraw.Draw(image)
-
-draw.text((dispWidth/3, dispHeight/40), Text,
-          font=font, fill=0, anchor='ms')
-try:
-    disp.display(disp.getbuffer(image))
-except:
-    print("Error pushing to display")
-#print(ha.entities.entity_id("light.living_room_desk_lamp"))
+def dispStatus(room):
+    try:
+        disp = epd7in5_V2.EPD()
+        dispInitRC = disp.init()
+        disp.Clear()
+    except:
+        print("Error initialising display")
+    
+    image = Image.new(mode='1', size=(dispWidth, dispHeight), color=255)
+    draw = ImageDraw.Draw(image)
+    
+    draw.line((0,dispHeight/40),(dispWidth,dispHeight/40))
+    draw.text((dispWidth/3, dispHeight/40), Text,
+              font=font, fill=0, anchor='ms')
+    try:
+        disp.display(disp.getbuffer(image))
+    except:
+        print("Error pushing to display")
+    #print(ha.entities.entity_id("light.living_room_desk_lamp"))
