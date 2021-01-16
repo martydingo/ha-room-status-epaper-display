@@ -17,7 +17,7 @@ except:
     print("Error initialising display")
 
 
-image = PIL.Image.new(mode=‘1’, size=(dispWidth, dispHeight), color=255)
+image = PIL.Image.new(mode='1', size=(dispWidth, dispHeight), color=255)
 draw = PIL.ImageDraw.Draw(image)
 
 draw.text((0, 0), Text,
