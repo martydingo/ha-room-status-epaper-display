@@ -7,7 +7,7 @@ dispWidth = 800
 dispHeight = 480
 
 roomFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),72)
-lightsFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),36)
+lightsFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),48)
 roomName = "Living Room"
 
 
@@ -30,7 +30,7 @@ draw.text((dispWidth/3, dispHeight/40), roomName,
 ## List of Lights
 draw.text((0, dispHeight/3), "Lights",
           font=lightsFont, fill=0, anchor='ls')
-draw.line(((0,((dispHeight/3)+36)),(dispWidth/5,((dispHeight/3)+36))))
+draw.line(((0,((dispHeight/3)+48)),(dispWidth/5,((dispHeight/3)+48))))
 
 ## Push to Display
 try:
