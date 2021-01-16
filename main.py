@@ -88,15 +88,15 @@ for media in Media:
 
 ## Climate
 draw.text(((dispWidth/3)*2, dispHeight/4), "Climate",
-          font=lightsTitleFont, fill=0, anchor='rs')
+          font=lightsTitleFont, fill=0, anchor='ls')
 draw.line((((dispWidth/3)*2,((dispHeight/4)+48)),(dispWidth,((dispHeight/4)+48))))
 Climate = crawlRoomClimate(roomName)
 for climate in Climate:
     climateDict = ha.entities.entity_id(climate)
     draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+(Climate.index(climate)*52))), climateDict['attributes']['friendly_name'] + " is currently at " + climateDict['attributes']['current_temperature']+"°C",
-              font=climateFont, fill=0, anchor='rs')
+              font=climateFont, fill=0, anchor='ls')
     draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+26))), "Humidity at "+ climateDict['attributes']['current_humdity']+"%",
-              font=climateFont, fill=0, anchor='rs')
+              font=climateFont, fill=0, anchor='ls')
     
 ## Push to Display
 try:
