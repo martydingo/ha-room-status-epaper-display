@@ -4,15 +4,6 @@ from PIL import Image, ImageDraw, ImageFont
 import os 
 
 
-def crawlMedia():
-
-                                print(entities['attributes']['friendly_name'] + ' is currently ' + entities['state'])
-                                try:
-                                    if(entities['attributes']['media_title']):
-                                        print('--- ' + entities['attributes']['media_title'] + ' - ' + entities['attributes']['media_artist']+' ---')
-                                except KeyError:
-                                    continue
-
 def crawlRoomLights(roomName):
     haStates = ha.entities.all()
     roomLights = []
