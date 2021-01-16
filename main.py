@@ -21,7 +21,7 @@ except:
 image = Image.new(mode='1', size=(dispWidth, dispHeight), color=255)
 draw = ImageDraw.Draw(image)
 
-draw.text((dispWidth/3, dispHeight/20), Text,
+draw.text((dispWidth/3, dispHeight/40), Text,
           font=font, fill=0, anchor='ms')
 try:
     disp.display(disp.getbuffer(image))
