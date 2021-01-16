@@ -3,13 +3,14 @@ import libs.epd7in5_V2.epd7in5_V2 as epd7in5_V2
 from PIL import Image, ImageDraw, ImageFont
 import os 
 
-def crawlRoomLightsEID(roomName):
+def crawlRoomLights(roomName):
     haStates = ha.entities.all()
     roomLights = []
     for entities in haStates:
         if('light' in entities['entity_id']):
             if((str(roomName).replace(' ','_').lower() + '_') in entities['entity_id']):
-                roomLights.append(entities['attributes']['friendly_name'])
+                roomLights.append(entities['entity_id'])
+                #roomLights.append(entities['attributes']['friendly_name'])
     return roomLights
 
 dispWidth = 800
@@ -44,10 +45,9 @@ draw.text((dispWidth/3, dispHeight/40), roomName,
 draw.text((0, dispHeight/3), "Lights",
           font=lightsTitleFont, fill=0, anchor='ls')
 draw.line(((dispWidth/10,((dispHeight/3)+48)),(dispWidth/5,((dispHeight/3)+48))))
-Lights_eid = crawlRoomLightsEID(roomName)
-print(Lights_eid)
-for entity_id in Lights_eid:
-    draw.text((0, ((dispHeight/3+72)+(Lights_eid.index(entity_id)*24))), entity_id,
+Lights = crawlRoomLights(roomName)
+for light in Lights:
+    draw.text((0, ((dispHeight/3+72)+(Lights_eid.index(entity_id)*26))), ha.entities.entity_id(light)['attributes']['friendly_name'] + "is switched " + ha.entities.entity_id(light)['state'],
               font=lightsFont, fill=0, anchor='ls')
 
 ## Push to Display
