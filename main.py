@@ -9,14 +9,15 @@ def crawlRoomLightsEID(roomName):
     for entities in haStates:
         if('light' in entities['entity_id']):
             if((str(roomName).replace(' ','_').lower() + '_') in entities['entity_id']):
-                roomLights.append(entities['entity_id'])
+                roomLights.append(entities['attributes']['friendly_name'])
     return roomLights
 
 dispWidth = 800
 dispHeight = 480
 
 roomFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),72)
-lightsFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),48)
+lightsTitleFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),48)
+lightsFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),24)
 roomName = "Living Room"
 
 
@@ -41,7 +42,7 @@ draw.text((dispWidth/3, dispHeight/40), roomName,
 
 ## List of Lights
 draw.text((0, dispHeight/3), "Lights",
-          font=lightsFont, fill=0, anchor='ls')
+          font=lightsTitleFont, fill=0, anchor='ls')
 draw.line(((dispWidth/10,((dispHeight/3)+48)),(dispWidth/5,((dispHeight/3)+48))))
 Lights_eid = crawlRoomLightsEID(roomName)
 print(Lights_eid)
