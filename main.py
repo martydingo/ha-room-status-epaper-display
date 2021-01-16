@@ -6,7 +6,7 @@ import os
 dispWidth = 800
 dispHeight = 480
 
-font = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),120)
+font = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),72)
 Text = "Living Room"
 
 try:
@@ -20,8 +20,8 @@ except:
 image = Image.new(mode='1', size=(dispWidth, dispHeight), color=255)
 draw = ImageDraw.Draw(image)
 
-draw.text((0, 0), Text,
-          font=font, fill=0, align='left')
+draw.text((dispWidth/2, dispHeight/2), Text,
+          font=font, fill=0, align='center')
 try:
     disp.display(disp.getbuffer(image))
 except:
