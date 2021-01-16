@@ -6,7 +6,7 @@ import os
 dispWidth = 800
 dispHeight = 480
 
-font = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),size=40)
+font = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),size=120)
 Text = "Living Room"
 
 try:
