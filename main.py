@@ -47,7 +47,7 @@ draw.line(((dispWidth/10,((dispHeight/3)+48)),(dispWidth/5,((dispHeight/3)+48)))
 Lights_eid = crawlRoomLightsEID(roomName)
 print(Lights_eid)
 for entity_id in Lights_eid:
-    draw.text((0, ((dispHeight/3+36)+(Lights_eid.index(entity_id)*36))), entity_id,
+    draw.text((0, ((dispHeight/3+72)+(Lights_eid.index(entity_id)*24))), entity_id,
               font=lightsFont, fill=0, anchor='ls')
 
 ## Push to Display
