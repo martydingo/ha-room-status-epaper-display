@@ -28,7 +28,7 @@ def crawlRoomClimate(roomName):
         if('climate' in entities['entity_id']):
             if((str(roomName).replace(' ','_').lower() + '_') in entities['entity_id']):
                 roomClimate.append(entities['entity_id'])
-    return roomLights
+    return roomClimate
 
 def crawlRoomMedia(roomName):
     haStates = ha.entities.all()
