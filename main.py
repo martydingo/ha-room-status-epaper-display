@@ -3,6 +3,13 @@ import libs.epd7in5_V2.epd7in5_V2 as epd7in5_V2
 from PIL import Image, ImageDraw, ImageFont
 import os 
 
+roomFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),72)
+MediaFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),24)
+lightsTitleFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),48)
+lightsFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),24)
+roomName = "Living Room"
+dispWidth = 800
+dispHeight = 480
 
 def crawlRoomLights(roomName):
     haStates = ha.entities.all()
@@ -11,6 +18,15 @@ def crawlRoomLights(roomName):
         if('light' in entities['entity_id']):
             if((str(roomName).replace(' ','_').lower() + '_') in entities['entity_id']):
                 roomLights.append(entities['entity_id'])
+    return roomLights
+
+def crawlRoomClimate(roomName):
+    haStates = ha.entities.all()
+    roomClimate = []
+    for entities in haStates:
+        if('climate' in entities['entity_id']):
+            if((str(roomName).replace(' ','_').lower() + '_') in entities['entity_id']):
+                roomClimate.append(entities['entity_id'])
     return roomLights
 
 def crawlRoomMedia(roomName):
@@ -25,17 +41,6 @@ def crawlRoomMedia(roomName):
                             if('Lounge Room' not in entities['attributes']['friendly_name']):
                                 roomMedia.append(entities['entity_id'])
     return roomMedia
-
-dispWidth = 800
-dispHeight = 480
-
-roomFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),72)
-MediaFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),24)
-lightsTitleFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),48)
-lightsFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),24)
-roomName = "Living Room"
-
-
 
 try:
     disp = epd7in5_V2.EPD()
@@ -71,15 +76,26 @@ Media = crawlRoomMedia(roomName)
 for media in Media:
     mediaDict = ha.entities.entity_id(media)
     draw.text((10, ((dispHeight/1.75+72)+(Media.index(media)*52))), mediaDict['attributes']['friendly_name'] + " is currently " + mediaDict['state'],
-              font=MediaFont, fill=0, anchor='ls')
+              font=mediaFont, fill=0, anchor='ls')
     try:
         if(mediaDict['attributes']['media_title']):
             currentlyPlaying=('--- ' + mediaDict['attributes']['media_title'] + ' - ' + mediaDict['attributes']['media_artist']+' ---')
             draw.text((10, ((dispHeight/1.75+72)+((Media.index(media)*52)+26))), currentlyPlaying,
-                      font=MediaFont, fill=0, anchor='ls')
+                      font=mediaFont, fill=0, anchor='ls')
     except KeyError:
         continue
 
+## Climate
+draw.text((dispWidth-10, dispHeight/4), "Climate",
+          font=LightsTitleFont, fill=0, anchor='rs')
+draw.line(((dispWidth-90,((dispHeight/4)+48)),(dispWidth,((dispHeight/4)+48))))
+Climate = crawlRoomClimate(roomName)
+for climate in Climate:
+    climateDict = ha.entities.entity_id(climate)
+    draw.text((dispWidth-10, ((dispHeight/4+72)+(Climate.index(climate)*52))), climateDict['attributes']['friendly_name'] + " is currently at " + climateDict['attributes']['current_temperature']+"°C",
+              font=climateFont, fill=0, anchor='rs')
+    draw.text((dispWidth-10, ((dispHeight/4+72)+((Climate.index(climate)*52)+26))), "Humidity at "+ climateDict['attributes']['current_humdity']+"%",
+              font=climateFont, fill=0, anchor='rs')
     
 ## Push to Display
 try:
