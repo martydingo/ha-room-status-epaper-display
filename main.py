@@ -17,6 +17,7 @@ except:
     print("Error initialising display")
 
 
+
 image = Image.new(mode='1', size=(dispWidth, dispHeight), color=255)
 draw = ImageDraw.Draw(image)
 
