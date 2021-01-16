@@ -88,7 +88,7 @@ for media in Media:
 
 ## Climate
 draw.text((dispWidth-10, dispHeight/4), "Climate",
-          font=LightsTitleFont, fill=0, anchor='rs')
+          font=lightsTitleFont, fill=0, anchor='rs')
 draw.line(((dispWidth-90,((dispHeight/4)+48)),(dispWidth,((dispHeight/4)+48))))
 Climate = crawlRoomClimate(roomName)
 for climate in Climate:
