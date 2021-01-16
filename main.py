@@ -29,7 +29,7 @@ draw.text((dispWidth/3, dispHeight/40), roomName,
 ## List of Lights
 draw.text((0, dispHeight/30), "Lights",
           font=font, fill=0, anchor='ls')
-draw.line(((0,((dispHeight/30)+72)),(dispWidth,((dispHeight/30)+72))))
+draw.line(((0,((dispHeight/30)+72)),(dispWidth/5,((dispHeight/30)+72))))
 
 ## Push to Display
 try:
