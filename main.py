@@ -47,7 +47,8 @@ draw.text((0, dispHeight/3), "Lights",
 draw.line(((dispWidth/10,((dispHeight/3)+48)),(dispWidth/5,((dispHeight/3)+48))))
 Lights = crawlRoomLights(roomName)
 for light in Lights:
-    draw.text((0, ((dispHeight/3+72)+(Lights.index(entity_id)*26))), ha.entities.entity_id(light)['attributes']['friendly_name'] + "is switched " + ha.entities.entity_id(light)['state'],
+    lightDict = ha.entities.entity_id(light)
+    draw.text((0, ((dispHeight/3+72)+(Lights.index(entity_id)*26))), lightDict['attributes']['friendly_name'] + "is switched " + lightDict['state'],
               font=lightsFont, fill=0, anchor='ls')
 
 ## Push to Display
