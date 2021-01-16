@@ -87,15 +87,15 @@ for media in Media:
         continue
 
 ## Climate
-draw.text((dispWidth-10, dispHeight/4), "Climate",
+draw.text(((dispWidth/3)*2, dispHeight/4), "Climate",
           font=lightsTitleFont, fill=0, anchor='rs')
-draw.line(((dispWidth-90,((dispHeight/4)+48)),(dispWidth,((dispHeight/4)+48))))
+draw.line((((dispWidth/3)*2,((dispHeight/4)+48)),(dispWidth,((dispHeight/4)+48))))
 Climate = crawlRoomClimate(roomName)
 for climate in Climate:
     climateDict = ha.entities.entity_id(climate)
-    draw.text((dispWidth-10, ((dispHeight/4+72)+(Climate.index(climate)*52))), climateDict['attributes']['friendly_name'] + " is currently at " + climateDict['attributes']['current_temperature']+"°C",
+    draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+(Climate.index(climate)*52))), climateDict['attributes']['friendly_name'] + " is currently at " + climateDict['attributes']['current_temperature']+"°C",
               font=climateFont, fill=0, anchor='rs')
-    draw.text((dispWidth-10, ((dispHeight/4+72)+((Climate.index(climate)*52)+26))), "Humidity at "+ climateDict['attributes']['current_humdity']+"%",
+    draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+26))), "Humidity at "+ climateDict['attributes']['current_humdity']+"%",
               font=climateFont, fill=0, anchor='rs')
     
 ## Push to Display
