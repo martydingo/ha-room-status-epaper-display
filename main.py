@@ -26,7 +26,7 @@ def crawlRoomClimate(roomName):
     roomClimate = []
     for entities in haStates:
         if('climate' in entities['entity_id']):
-            if((str(roomName).replace(' ','_').lower() + '_') in entities['entity_id']):
+            if((str(roomName).replace(' ','_').lower()) in entities['entity_id']):
                 roomClimate.append(entities['entity_id'])
     return roomClimate
 
@@ -89,7 +89,7 @@ for media in Media:
 ## Climate
 draw.text(((dispWidth/3)*2, dispHeight/4), "Climate",
           font=lightsTitleFont, fill=0, anchor='ls')
-draw.line((((dispWidth/3)*2,((dispHeight/4)+48)),(dispWidth,((dispHeight/4)+48))))
+draw.line((((dispWidth/3)*2,((dispHeight/4)+48)),(((dispWidth/3)*2)+80,((dispHeight/4)+48))))
 Climate = crawlRoomClimate(roomName)
 for climate in Climate:
     climateDict = ha.entities.entity_id(climate)
