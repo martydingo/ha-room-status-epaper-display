@@ -44,6 +44,15 @@ def crawlRoomMedia(roomName):
                                 roomMedia.append(entities['entity_id'])
     return roomMedia
 
+def crawlRoomPowerWatts(roomName):
+    haStates = ha.entities.all()
+    roomPower = []
+    for entities in haStates:
+        if('mss310_power_sensor_w_0_2' in entities['entity_id']):
+            if('lounge' in entities['entity_id']):
+                roomPower.append(entities['entity_id'])
+    return roomPower
+
 try:
     while True:
         image = Image.new(mode='1', size=(dispWidth, dispHeight), color=255)
@@ -97,7 +106,21 @@ try:
                       font=climateFont, fill=0, anchor='ls')            
             draw.text(((dispWidth/4)*2.4, ((dispHeight/4+72)+((Climate.index(climate)*52)+78))), "targeting " + str(climateDict['attributes']['temperature'])+"°C",
                       font=climateFont, fill=0, anchor='ls')
-            
+        
+        ## Power
+        draw.text(((dispWidth/4)*2.3, dispHeight/1.75), "Power",
+                  font=lightsTitleFont, fill=0, anchor='ls')
+        draw.line((((dispWidth/4)*2.2,((dispHeight/1.75)+72)),(((dispWidth/3)*2.1)+80,((dispHeight/1.75)+60))))
+        Power = crawlRoomPowerWatts(roomName)
+        totalWatts = 0
+        for power in Power:
+            try:
+                totalWatts = totalWatts + float(powerDict['state'])
+            except:
+                continue
+        draw.text(((dispWidth/4)*2.4, ((dispHeight/1.75+72)+(Power.index(power)*52))), "Living Room is currently drawing " + str(totalWatts)+" watts",
+                  font=powerFont, fill=0, anchor='ls')
+
         ## Push to Display
         try:
             disp = epd7in5_V2.EPD()
