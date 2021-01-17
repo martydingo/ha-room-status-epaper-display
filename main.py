@@ -93,10 +93,9 @@ try:
                       font=climateFont, fill=0, anchor='ls')
             draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+26))), "Humidity at "+ str(climateDict['attributes']['current_humidity'])+"%",
                       font=climateFont, fill=0, anchor='ls')
-            draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+52))), "and currently set to "+ str(climateDict['attributes']['hvac_action']) + ", target temperature: " + str(climateDict['attributes']['current_temperature']),
-                      font=climateFont, fill=0, anchor='ls')
-            
-            draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+52))), "targeting " + str(climateDict['attributes']['temperature'])+"°C",
+            draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+52))), "and currently set to "+ str(climateDict['attributes']['hvac_action']) + ",",
+                      font=climateFont, fill=0, anchor='ls')            
+            draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+78))), "targeting " + str(climateDict['attributes']['temperature'])+"°C",
                       font=climateFont, fill=0, anchor='ls')
             
         ## Push to Display
