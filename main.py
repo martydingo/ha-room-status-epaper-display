@@ -50,8 +50,8 @@ try:
         draw = ImageDraw.Draw(image)
         
         ## Name of Room w/ Lines
-        draw.line(((0,dispHeight/40)-36,(dispWidth,dispHeight/40)))
-        draw.line(((0,((dispHeight/40)+36)),(dispWidth,((dispHeight/40)+72))))
+        draw.line(((0,dispHeight/40),(dispWidth,dispHeight/40)))
+        draw.line(((0,(((dispHeight/40)+36))),(dispWidth,((dispHeight/40)+72))))
         draw.text((dispWidth/4, dispHeight/40), roomName,
                   font=roomFont, fill=0, anchor='ms')
         
