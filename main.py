@@ -109,17 +109,17 @@ try:
                       font=climateFont, fill=0, anchor='ls')
         
         ## Power
-        draw.text(((dispWidth/4)*2.3, dispHeight/1.75), "Power",
+        draw.text(((dispWidth/4)*2.3, dispHeight/1.5), "Power",
                   font=lightsTitleFont, fill=0, anchor='ls')
         draw.line((((dispWidth/4)*2.2,((dispHeight/1.75)+72)),(((dispWidth/3)*2.1)+80,((dispHeight/1.75)+60))))
         Power = crawlRoomPowerWatts(roomName)
         totalWatts = 0
         for power in Power:
             try:
-                totalWatts = totalWatts + float(powerDict['state'])
+                totalWatts = totalWatts + float(power['state'])
             except:
                 continue
-        draw.text(((dispWidth/4)*2.4, ((dispHeight/1.75+72)+(Power.index(power)*52))), "Living Room is currently drawing " + str(totalWatts)+" watts",
+        draw.text(((dispWidth/4)*2.4, ((dispHeight/1.5+72))), "Living Room is currently drawing " + str(totalWatts)+" watts",
                   font=powerFont, fill=0, anchor='ls')
 
         ## Push to Display
