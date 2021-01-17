@@ -2,6 +2,7 @@ import libs.ha_api_lib as ha
 import libs.epd7in5_V2.epd7in5_V2 as epd7in5_V2
 from PIL import Image, ImageDraw, ImageFont
 import os 
+import time
 
 roomFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),72)
 mediaFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),24)
@@ -44,62 +45,64 @@ def crawlRoomMedia(roomName):
     return roomMedia
 
 try:
-    disp = epd7in5_V2.EPD()
-    dispInitRC = disp.init()
-    disp.Clear()
-except:
-    print("Error initialising display")
-
-image = Image.new(mode='1', size=(dispWidth, dispHeight), color=255)
-draw = ImageDraw.Draw(image)
-
-## Name of Room w/ Lines
-draw.line(((0,dispHeight/40),(dispWidth,dispHeight/40)))
-draw.line(((0,((dispHeight/40)+72)),(dispWidth,((dispHeight/40)+72))))
-draw.text((dispWidth/3, dispHeight/40), roomName,
-          font=roomFont, fill=0, anchor='ms')
-
-## List of Lights
-draw.text((10, dispHeight/4), "Lights",
-          font=lightsTitleFont, fill=0, anchor='ls')
-draw.line(((10,((dispHeight/4)+48)),(dispWidth/6,((dispHeight/4)+48))))
-Lights = crawlRoomLights(roomName)
-for light in Lights:
-    lightDict = ha.entities.entity_id(light)
-    draw.text((10, ((dispHeight/4+72)+(Lights.index(light)*26))), lightDict['attributes']['friendly_name'] + " is switched " + lightDict['state'],
-              font=lightsFont, fill=0, anchor='ls')
-
-## List of Media
-draw.text((10, dispHeight/1.75), "Media",
-          font=lightsTitleFont, fill=0, anchor='ls')
-draw.line(((10,((dispHeight/1.75)+48)),(dispWidth/6,((dispHeight/1.75)+48))))
-Media = crawlRoomMedia(roomName)
-for media in Media:
-    mediaDict = ha.entities.entity_id(media)
-    draw.text((10, ((dispHeight/1.75+72)+(Media.index(media)*52))), mediaDict['attributes']['friendly_name'] + " is currently " + mediaDict['state'],
-              font=mediaFont, fill=0, anchor='ls')
-    try:
-        if(mediaDict['attributes']['media_title']):
-            currentlyPlaying=('--- ' + mediaDict['attributes']['media_title'] + ' - ' + mediaDict['attributes']['media_artist']+' ---')
-            draw.text((10, ((dispHeight/1.75+72)+((Media.index(media)*52)+26))), currentlyPlaying,
+    while True:
+        image = Image.new(mode='1', size=(dispWidth, dispHeight), color=255)
+        draw = ImageDraw.Draw(image)
+        
+        ## Name of Room w/ Lines
+        draw.line(((0,dispHeight/40),(dispWidth,dispHeight/40)))
+        draw.line(((0,((dispHeight/40)+72)),(dispWidth,((dispHeight/40)+72))))
+        draw.text((dispWidth/3, dispHeight/40), roomName,
+                  font=roomFont, fill=0, anchor='ms')
+        
+        ## List of Lights
+        draw.text((10, dispHeight/4), "Lights",
+                  font=lightsTitleFont, fill=0, anchor='ls')
+        draw.line(((10,((dispHeight/4)+48)),(dispWidth/6,((dispHeight/4)+48))))
+        Lights = crawlRoomLights(roomName)
+        for light in Lights:
+            lightDict = ha.entities.entity_id(light)
+            draw.text((10, ((dispHeight/4+72)+(Lights.index(light)*26))), lightDict['attributes']['friendly_name'] + " is switched " + lightDict['state'],
+                      font=lightsFont, fill=0, anchor='ls')
+        
+        ## List of Media
+        draw.text((10, dispHeight/1.75), "Media",
+                  font=lightsTitleFont, fill=0, anchor='ls')
+        draw.line(((10,((dispHeight/1.75)+48)),(dispWidth/6,((dispHeight/1.75)+48))))
+        Media = crawlRoomMedia(roomName)
+        for media in Media:
+            mediaDict = ha.entities.entity_id(media)
+            draw.text((10, ((dispHeight/1.75+72)+(Media.index(media)*52))), mediaDict['attributes']['friendly_name'] + " is currently " + mediaDict['state'],
                       font=mediaFont, fill=0, anchor='ls')
-    except KeyError:
-        continue
-
-## Climate
-draw.text(((dispWidth/3)*2, dispHeight/4), "Climate",
-          font=lightsTitleFont, fill=0, anchor='ls')
-draw.line((((dispWidth/3)*2,((dispHeight/4)+48)),(((dispWidth/3)*2)+80,((dispHeight/4)+48))))
-Climate = crawlRoomClimate(roomName)
-for climate in Climate:
-    climateDict = ha.entities.entity_id(climate)
-    draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+(Climate.index(climate)*52))), climateDict['attributes']['friendly_name'] + " is currently at " + str(climateDict['attributes']['current_temperature'])+"°C",
-              font=climateFont, fill=0, anchor='ls')
-    draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+26))), "Humidity at "+ str(climateDict['attributes']['current_humidity'])+"%",
-              font=climateFont, fill=0, anchor='ls')
-    
-## Push to Display
-try:
-    disp.display(disp.getbuffer(image))
-except:
-    print("Error pushing to display")
+            try:
+                if(mediaDict['attributes']['media_title']):
+                    currentlyPlaying=('--- ' + mediaDict['attributes']['media_title'] + ' - ' + mediaDict['attributes']['media_artist']+' ---')
+                    draw.text((10, ((dispHeight/1.75+72)+((Media.index(media)*52)+26))), currentlyPlaying,
+                              font=mediaFont, fill=0, anchor='ls')
+            except KeyError:
+                continue
+        
+        ## Climate
+        draw.text(((dispWidth/3)*2, dispHeight/4), "Climate",
+                  font=lightsTitleFont, fill=0, anchor='ls')
+        draw.line((((dispWidth/3)*2,((dispHeight/4)+48)),(((dispWidth/3)*2)+80,((dispHeight/4)+48))))
+        Climate = crawlRoomClimate(roomName)
+        for climate in Climate:
+            climateDict = ha.entities.entity_id(climate)
+            draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+(Climate.index(climate)*52))), climateDict['attributes']['friendly_name'] + " is currently at " + str(climateDict['attributes']['current_temperature'])+"°C",
+                      font=climateFont, fill=0, anchor='ls')
+            draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+26))), "Humidity at "+ str(climateDict['attributes']['current_humidity'])+"%",
+                      font=climateFont, fill=0, anchor='ls')
+            
+        ## Push to Display
+        try:
+            disp = epd7in5_V2.EPD()
+            dispInitRC = disp.init()
+            disp.Clear()
+            disp.display(disp.getbuffer(image))
+        except:
+            print("Error pushing to display")
+        
+        time.sleep(60)
+except KeyboardInterrupt:
+    exit()
