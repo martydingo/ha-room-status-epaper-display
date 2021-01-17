@@ -4,11 +4,11 @@ from PIL import Image, ImageDraw, ImageFont
 import os 
 import time
 
-roomFont = ImageFont.truetype((os.getcwd()+"/fonts/Comfortaa-VariableFont_wght.ttf"),72)
-mediaFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),24)
-climateFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),24)
-lightsTitleFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),48)
-lightsFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),24)
+roomFont = ImageFont.truetype((os.getcwd()+"/fonts/RobotoSlab-Regular.ttf"),72)
+mediaFont = ImageFont.truetype((os.getcwd()+"/fonts/Comfortaa-VariableFont_wght.ttf"),24)
+climateFont = ImageFont.truetype((os.getcwd()+"/fonts/Comfortaa-VariableFont_wght.ttf"),24)
+lightsTitleFont = ImageFont.truetype((os.getcwd()+"/fonts/Comfortaa-VariableFont_wght.ttf"),48)
+lightsFont = ImageFont.truetype((os.getcwd()+"/fonts/Comfortaa-VariableFont_wght.ttf"),24)
 roomName = "Living Room"
 dispWidth = 800
 dispHeight = 480
@@ -52,7 +52,7 @@ try:
         ## Name of Room w/ Lines
         draw.line(((0,dispHeight/40),(dispWidth,dispHeight/40)))
         draw.line(((0,((dispHeight/40)+72)),(dispWidth,((dispHeight/40)+72))))
-        draw.text((dispWidth/3, dispHeight/40), roomName,
+        draw.text((dispWidth/4, dispHeight/40), roomName,
                   font=roomFont, fill=0, anchor='ms')
         
         ## List of Lights
