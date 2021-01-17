@@ -4,7 +4,7 @@ from PIL import Image, ImageDraw, ImageFont
 import os 
 import time
 
-roomFont = ImageFont.truetype((os.getcwd()+"/fonts/RobotoSlab-Regular.ttf"),72)
+roomFont = ImageFont.truetype((os.getcwd()+"/fonts/Merriweather-Regular"),72)
 mediaFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),24)
 climateFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),24)
 lightsTitleFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),48)
