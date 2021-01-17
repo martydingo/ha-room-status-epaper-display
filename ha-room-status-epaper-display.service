@@ -1,0 +1,13 @@
+[Unit]
+Description=ha-room-status-epaper-display
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=root
+Group=root
+Type=simple
+ExecStart=/usr/bin/python3 /opt/ha-room-status-epaper-display/main.py
+
+[Install]
+WantedBy=multi-user.target
