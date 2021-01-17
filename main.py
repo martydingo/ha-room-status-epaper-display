@@ -58,34 +58,34 @@ try:
         ## List of Lights
         draw.text((10, dispHeight/4), "Lights",
                   font=lightsTitleFont, fill=0, anchor='ls')
-        draw.line(((10,((dispHeight/4)+60)),(dispWidth/6,((dispHeight/4)+60))))
+        draw.line(((10,((dispHeight/4)+72)),(dispWidth/6,((dispHeight/4)+60))))
         Lights = crawlRoomLights(roomName)
         for light in Lights:
             lightDict = ha.entities.entity_id(light)
-            draw.text((10, ((dispHeight/4+72)+(Lights.index(light)*26))), lightDict['attributes']['friendly_name'] + " is switched " + lightDict['state'],
+            draw.text((50, ((dispHeight/4+72)+(Lights.index(light)*26))), lightDict['attributes']['friendly_name'] + " is switched " + lightDict['state'],
                       font=lightsFont, fill=0, anchor='ls')
         
         ## List of Media
         draw.text((10, dispHeight/1.75), "Media",
                   font=lightsTitleFont, fill=0, anchor='ls')
-        draw.line(((10,((dispHeight/1.75)+60)),(dispWidth/6,((dispHeight/1.75)+60))))
+        draw.line(((10,((dispHeight/1.75)+72)),(dispWidth/6,((dispHeight/1.75)+60))))
         Media = crawlRoomMedia(roomName)
         for media in Media:
             mediaDict = ha.entities.entity_id(media)
-            draw.text((10, ((dispHeight/1.75+72)+(Media.index(media)*52))), mediaDict['attributes']['friendly_name'] + " is currently " + mediaDict['state'],
+            draw.text((50, ((dispHeight/1.75+72)+(Media.index(media)*52))), mediaDict['attributes']['friendly_name'] + " is currently " + mediaDict['state'],
                       font=mediaFont, fill=0, anchor='ls')
             try:
                 if(mediaDict['attributes']['media_title']):
                     currentlyPlaying=('--- ' + mediaDict['attributes']['media_title'] + ' - ' + mediaDict['attributes']['media_artist']+' ---')
-                    draw.text((10, ((dispHeight/1.75+72)+((Media.index(media)*52)+26))), currentlyPlaying,
+                    draw.text((50, ((dispHeight/1.75+72)+((Media.index(media)*52)+26))), currentlyPlaying,
                               font=mediaFont, fill=0, anchor='ls')
             except KeyError:
                 continue
         
         ## Climate
-        draw.text(((dispWidth/4)*2.2, dispHeight/4), "Climate",
+        draw.text(((dispWidth/4)*2.1, dispHeight/4), "Climate",
                   font=lightsTitleFont, fill=0, anchor='ls')
-        draw.line((((dispWidth/4)*2.2,((dispHeight/4)+60)),(((dispWidth/3)*2)+80,((dispHeight/4)+60))))
+        draw.line((((dispWidth/4)*2.1,((dispHeight/4)+72)),(((dispWidth/3)*2)+80,((dispHeight/4)+60))))
         Climate = crawlRoomClimate(roomName)
         for climate in Climate:
             climateDict = ha.entities.entity_id(climate)
