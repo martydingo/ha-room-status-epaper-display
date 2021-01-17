@@ -51,7 +51,7 @@ try:
         
         ## Name of Room w/ Lines
         draw.line(((0,dispHeight/40),(dispWidth,dispHeight/40)))
-        draw.line(((0,(((dispHeight/40)+80))),(dispWidth,((dispHeight/40)+80))))
+        draw.line(((0,(((dispHeight/40)+88))),(dispWidth,((dispHeight/40)+88))))
         draw.text((dispWidth/4, dispHeight/40), roomName,
                   font=roomFont, fill=0, anchor='ms')
         
