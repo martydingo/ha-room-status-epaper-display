@@ -9,6 +9,7 @@ mediaFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),24)
 climateFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),26)
 lightsTitleFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),60)
 lightsFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),26)
+powerFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),26)
 roomName = "Living Room"
 dispWidth = 800
 dispHeight = 480
