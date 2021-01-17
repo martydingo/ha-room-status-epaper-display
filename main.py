@@ -83,7 +83,7 @@ try:
                 continue
         
         ## Climate
-        draw.text(((dispWidth/4)*2, dispHeight/4), "Climate",
+        draw.text(((dispWidth/4)*2.2, dispHeight/4), "Climate",
                   font=lightsTitleFont, fill=0, anchor='ls')
         draw.line((((dispWidth/4)*2.2,((dispHeight/4)+60)),(((dispWidth/3)*2)+80,((dispHeight/4)+60))))
         Climate = crawlRoomClimate(roomName)
