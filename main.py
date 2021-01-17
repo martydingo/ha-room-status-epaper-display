@@ -4,10 +4,10 @@ from PIL import Image, ImageDraw, ImageFont
 import os 
 import time
 
-roomFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),72)
+roomFont = ImageFont.truetype((os.getcwd()+"/fonts/Comfortaa-VariableFont_wght.ttf"),72)
 mediaFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),24)
 climateFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),26)
-lightsTitleFont = ImageFont.truetype((os.getcwd()+"/fonts/Comfortaa-VariableFont_wght.ttf"),48)
+lightsTitleFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),48)
 lightsFont = ImageFont.truetype((os.getcwd()+"/fonts/BebasNeue-Regular.ttf"),26)
 roomName = "Living Room"
 dispWidth = 800
@@ -89,13 +89,13 @@ try:
         Climate = crawlRoomClimate(roomName)
         for climate in Climate:
             climateDict = ha.entities.entity_id(climate)
-            draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+(Climate.index(climate)*52))), climateDict['attributes']['friendly_name'] + " is currently at " + str(climateDict['attributes']['current_temperature'])+"°C",
+            draw.text(((dispWidth/4)*3, ((dispHeight/4+72)+(Climate.index(climate)*52))), climateDict['attributes']['friendly_name'] + " is currently at " + str(climateDict['attributes']['current_temperature'])+"°C",
                       font=climateFont, fill=0, anchor='ls')
-            draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+26))), "Humidity at "+ str(climateDict['attributes']['current_humidity'])+"%",
+            draw.text(((dispWidth/4)*3, ((dispHeight/4+72)+((Climate.index(climate)*52)+26))), "Humidity at "+ str(climateDict['attributes']['current_humidity'])+"%",
                       font=climateFont, fill=0, anchor='ls')
-            draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+52))), "and currently set to "+ str(climateDict['attributes']['hvac_action']) + ",",
+            draw.text(((dispWidth/4)*3, ((dispHeight/4+72)+((Climate.index(climate)*52)+52))), "and currently set to "+ str(climateDict['attributes']['hvac_action']) + ",",
                       font=climateFont, fill=0, anchor='ls')            
-            draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+78))), "targeting " + str(climateDict['attributes']['temperature'])+"°C",
+            draw.text(((dispWidth/4)*3, ((dispHeight/4+72)+((Climate.index(climate)*52)+78))), "targeting " + str(climateDict['attributes']['temperature'])+"°C",
                       font=climateFont, fill=0, anchor='ls')
             
         ## Push to Display
