@@ -51,14 +51,14 @@ try:
         
         ## Name of Room w/ Lines
         draw.line(((0,dispHeight/40),(dispWidth,dispHeight/40)))
-        draw.line(((0,(((dispHeight/40)+96))),(dispWidth,((dispHeight/40)+108))))
+        draw.line(((0,(((dispHeight/40)+80))),(dispWidth,((dispHeight/40)+108))))
         draw.text((dispWidth/4, dispHeight/40), roomName,
                   font=roomFont, fill=0, anchor='ms')
         
         ## List of Lights
         draw.text((10, dispHeight/4), "Lights",
                   font=lightsTitleFont, fill=0, anchor='ls')
-        draw.line(((10,((dispHeight/4)+48)),(dispWidth/6,((dispHeight/4)+48))))
+        draw.line(((10,((dispHeight/4)+60)),(dispWidth/6,((dispHeight/4)+60))))
         Lights = crawlRoomLights(roomName)
         for light in Lights:
             lightDict = ha.entities.entity_id(light)
@@ -68,7 +68,7 @@ try:
         ## List of Media
         draw.text((10, dispHeight/1.75), "Media",
                   font=lightsTitleFont, fill=0, anchor='ls')
-        draw.line(((10,((dispHeight/1.75)+48)),(dispWidth/6,((dispHeight/1.75)+48))))
+        draw.line(((10,((dispHeight/1.75)+60)),(dispWidth/6,((dispHeight/1.75)+60))))
         Media = crawlRoomMedia(roomName)
         for media in Media:
             mediaDict = ha.entities.entity_id(media)
@@ -83,19 +83,19 @@ try:
                 continue
         
         ## Climate
-        draw.text(((dispWidth/3)*2, dispHeight/4), "Climate",
+        draw.text(((dispWidth/4)*2, dispHeight/4), "Climate",
                   font=lightsTitleFont, fill=0, anchor='ls')
-        draw.line((((dispWidth/3)*2,((dispHeight/4)+48)),(((dispWidth/3)*2)+80,((dispHeight/4)+48))))
+        draw.line((((dispWidth/4)*2,((dispHeight/4)+60)),(((dispWidth/3)*2)+80,((dispHeight/4)+60))))
         Climate = crawlRoomClimate(roomName)
         for climate in Climate:
             climateDict = ha.entities.entity_id(climate)
-            draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+(Climate.index(climate)*52))), climateDict['attributes']['friendly_name'] + " is currently at " + str(climateDict['attributes']['current_temperature'])+"°C",
+            draw.text(((dispWidth/4)*2, ((dispHeight/4+72)+(Climate.index(climate)*52))), climateDict['attributes']['friendly_name'] + " is currently at " + str(climateDict['attributes']['current_temperature'])+"°C",
                       font=climateFont, fill=0, anchor='ls')
-            draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+26))), "Humidity at "+ str(climateDict['attributes']['current_humidity'])+"%",
+            draw.text(((dispWidth/4)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+26))), "Humidity at "+ str(climateDict['attributes']['current_humidity'])+"%",
                       font=climateFont, fill=0, anchor='ls')
-            draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+52))), "and currently set to "+ str(climateDict['attributes']['hvac_action']) + ",",
+            draw.text(((dispWidth/4)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+52))), "and currently set to "+ str(climateDict['attributes']['hvac_action']) + ",",
                       font=climateFont, fill=0, anchor='ls')            
-            draw.text(((dispWidth/3)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+78))), "targeting " + str(climateDict['attributes']['temperature'])+"°C",
+            draw.text(((dispWidth/4)*2, ((dispHeight/4+72)+((Climate.index(climate)*52)+78))), "targeting " + str(climateDict['attributes']['temperature'])+"°C",
                       font=climateFont, fill=0, anchor='ls')
             
         ## Push to Display
